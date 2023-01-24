@@ -1,0 +1,49 @@
+## Palo Script V1
+
+# Turning on scripting mode
+set cli scripting-mode on
+
+#Switchign to config mode
+configure
+
+# Only letting localhost access the management int
+set deviceconfig system permitted-ip 127.0.0.1
+
+# Killing external interface temporarily
+set network interface ethernet ethernet1/x link-state down
+
+# committing
+commit
+
+## Set admin pass
+configure set mgt-confg users admin password mYSecUrEP@ssw0rd123!!
+commit
+
+## Doing IP stuff
+config
+
+set deviceconfig system type static
+set deviceconfig system ip-address x.x.x.x netmask x.x.x.x default-gateway x.x.x.x dnssetting servers primary x.x.x.x
+
+commit
+
+#Forcing HTTPS
+config
+set deviceconfig system service disable-https no
+commit
+
+# Showing Admin Accounts
+show admins all
+# delete mgt-config users redteam and # commit to delete bad admins
+
+## MGMT back on:
+set
+deviceconfig system permitted-ip x.x.x.x 
+#(IP of device we want to use to access)
+
+## Backup
+>scp export configuration to username@host:/home/? from running-config.xml
+## Need to secure that file, maybe chattr
+
+# Turning off scripting mode
+set cli scripting-mode off
