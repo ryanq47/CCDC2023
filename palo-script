@@ -1,4 +1,6 @@
 ## Palo Script V1
+## Notes, after a commit, you stay in edit mode
+
 
 # Turning on scripting mode
 set cli scripting-mode on
@@ -20,51 +22,48 @@ configure set mgt-config users admin password mYSecUrEP@ssw0rd123!!
 commit
 
 ## Doing IP stuff
-config
 
 set deviceconfig system type static
-set deviceconfig system ip-address x.x.x.x netmask x.x.x.x default-gateway x.x.x.x dnssetting servers primary x.x.x.x
+set deviceconfig system ip-address x.x.x.x netmask x.x.x.x default-gateway x.x.x.x dns-setting servers primary x.x.x.x
 
 commit
 
 #Forcing HTTPS
-config
+#config
 set deviceconfig system service disable-https no
 commit
 
 # Showing Admin Accounts
-show admins all
+#https://knowledgebase.paloaltonetworks.com/KCSArticleDetail?id=kA10g000000ClFrCAK
+# Shows all admina ccunts: show admins all
 # delete mgt-config users redteam and # commit to delete bad admins
+# See users that can config: show mgt-config users
 
 ## MGMT back on:
 set
 deviceconfig system permitted-ip x.x.x.x 
 #(IP of device we want to use to access)
 
+
+## Update:
+request system software download version 10.0.10
+request system software install version 10.0.10
+
+
 ## Backup
 >scp export configuration to username@host:/home/? from running-config.xml
 ## Need to secure that file, maybe chattr
 
 # Enable high-security threat prevention profile
-configure
-set deviceconfig system high-security-mode yes
+#Not working
+#set deviceconfig system high-security-mode yes
 exit
 
 ## Security Profile:
-configure
-set threat-prevention profiles security rulebase security-rules rule 1 action allow
-set threat-prevention profiles security rulebase security-rules rule 1 profile anti-virus
-set threat-prevention profiles security rulebase security-rules rule 1 profile anti-spyware
-set threat-prevention profiles security rulebase security-rules rule 1 profile vulnerability-protection
-set threat-prevention profiles security rulebase security-rules rule 1 profile threat-prevention
-set threat-prevention profiles security rulebase security-rules rule 1 profile WildFire
-exit
+
 
 # Enable SSL decryption
-configure
-set ssl-decryption-rulebase decryption-rules rule 1 profile decryption-rule-profile
-set ssl-decryption-rulebase decryption-rules rule 1 action allow
-exit
+
 
 
 # Turning off scripting mode
