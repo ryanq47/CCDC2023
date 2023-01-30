@@ -45,5 +45,23 @@ deviceconfig system permitted-ip x.x.x.x
 >scp export configuration to username@host:/home/? from running-config.xml
 ## Need to secure that file, maybe chattr
 
+# Enable high-security threat prevention profile
+configure
+set deviceconfig system high-security-mode yes
+exit
+
+## Security Profile:
+configure
+set threat-prevention profiles security rulebase security-rules rule 1 action allow
+set threat-prevention profiles security rulebase security-rules rule 1 profile anti-virus
+set threat-prevention profiles security rulebase security-rules rule 1 profile anti-spyware
+set threat-prevention profiles security rulebase security-rules rule 1 profile vulnerability-protection
+set threat-prevention profiles security rulebase security-rules rule 1 profile threat-prevention
+set threat-prevention profiles security rulebase security-rules rule 1 profile WildFire
+exit
+
+
 # Turning off scripting mode
 set cli scripting-mode off
+
+
