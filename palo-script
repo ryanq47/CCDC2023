@@ -46,8 +46,8 @@ deviceconfig system permitted-ip x.x.x.x
 
 
 ## Update:
-request system software download version 10.0.10
-request system software install version 10.0.10
+request system software download version 10.2.3-h2
+request system software install version 10.2.3-h2
 
 
 ## Backup
