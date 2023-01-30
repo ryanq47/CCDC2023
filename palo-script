@@ -60,6 +60,12 @@ set threat-prevention profiles security rulebase security-rules rule 1 profile t
 set threat-prevention profiles security rulebase security-rules rule 1 profile WildFire
 exit
 
+# Enable SSL decryption
+configure
+set ssl-decryption-rulebase decryption-rules rule 1 profile decryption-rule-profile
+set ssl-decryption-rulebase decryption-rules rule 1 action allow
+exit
+
 
 # Turning off scripting mode
 set cli scripting-mode off
