@@ -13,10 +13,10 @@ set deviceconfig system permitted-ip 127.0.0.1
 set network interface ethernet ethernet1/x link-state down
 
 # committing
-commit
+#commit
 
 ## Set admin pass
-configure set mgt-confg users admin password mYSecUrEP@ssw0rd123!!
+configure set mgt-config users admin password mYSecUrEP@ssw0rd123!!
 commit
 
 ## Doing IP stuff
